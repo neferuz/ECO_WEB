@@ -728,44 +728,44 @@
         }
 
         function renderMega(cat, key) {
-            // Найди нужную подкатегорию по key
             const subcategory = menuData[cat].subcategories.find(sub => sub.name === key);
-            if (!subcategory) { mega.classList.remove('show'); return; }
+            if (!subcategory) {
+                mega.classList.remove('show');
+                return;
+            }
 
-            // Список под-подкатегорий
             let subsub = subcategory.subsubcategories || [];
-            // Если subsub — массив объектов, разбиваем name по запятой, если надо
-            subsub = subsub.flatMap(ss => {
-                if (typeof ss.name === 'string' && ss.name.includes(',')) {
-                    return ss.name.split(',').map(n => ({ ...ss, name: n.trim() }));
-                }
-                return ss;
-            });
 
-            megaWrap.innerHTML = `
-                <div class="mega__col">
-                    <ul class="mega__list">
-                        ${subsub.map(ss => {
+            // Разбиваем каждую subsub на отдельный .mega__col
+            megaWrap.innerHTML = subsub.map(ss => {
                 const subsubs = (ss.subsubsubcategories && ss.subsubsubcategories.length > 0)
-                    ? `<div class='mega__subline'>${ss.subsubsubcategories.map(sss => `<a href='/category-products/?subsubcat_id=${sss.id}&subsubcat_name=${encodeURIComponent(sss.name)}' class='mega__sublink'>${sss.name}</a>`).join('')}</div>`
+                    ? `<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 6px;">
+					${ss.subsubsubcategories.map(sss => `
+						<a href='/category-products/?subsubcat_id=${sss.id}&subsubcat_name=${encodeURIComponent(sss.name)}' class='mega__sublink'>
+							${sss.name}
+						</a>`).join('')}
+				</div>`
                     : '';
-                return `<li class="mega__item">${ss.name}${subsubs}</li>`;
-            }).join('')}
-                    </ul>
-                </div>
-            `;
 
-            // Картинка и caption справа
+                return `
+			<div class="mega__col">
+				<div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">${ss.name}</div>
+				${subsubs}
+			</div>
+		`;
+            }).join('');
+
+            // Добавим картинку справа, если есть
             if (subcategory.image) {
                 megaWrap.insertAdjacentHTML('beforeend', `
-                    <div class="mega__img">
-                        <img src="${subcategory.image}" alt="${subcategory.name}">
-                        <div class="mega__caption">
-                            <span class="mega__caption-arrow">&#8594;</span>
-                            ${subcategory.caption || 'Shop now'}
-                        </div>
-                    </div>
-                `);
+			<div class="mega__img">
+				<img src="${subcategory.image}" alt="${subcategory.name}">
+				<div class="mega__caption">
+					<span class="mega__caption-arrow">&#8594;</span>
+					${subcategory.caption || 'Shop now'}
+				</div>
+			</div>
+		`);
             }
 
             mega.classList.add('show');
