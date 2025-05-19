@@ -129,6 +129,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mylanding/frontend-eco-soft/static'),  # путь до статики
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://ecoweb-production.up.railway.app',
+    'https://ecosofftextile.com',
+]
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # сюда соберётся всё для Railway
 # Default primary key field type
