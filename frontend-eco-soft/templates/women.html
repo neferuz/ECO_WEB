@@ -273,18 +273,20 @@
 		.mega__shop i {
 			transform: rotate(-45deg);
 		}
+
 		.mega__wrap {
-    gap: 24px !important; /* было 64px */
-}
+			gap: 24px !important;
+			/* было 64px */
+		}
 
-.mega__wrap {
-    column-gap: 24px;
-    row-gap: 0;
-}
+		.mega__wrap {
+			column-gap: 24px;
+			row-gap: 0;
+		}
 
-.mega__img {
-    margin-left: 40px;
-}
+		.mega__img {
+			margin-left: 40px;
+		}
 
 
 		/* ---------- burger ---------- */
@@ -509,7 +511,8 @@
 
 			<nav class="nav-top" id="navTop"></nav>
 
-			<a href="#" class="brand"><img width="180px" src="https://tranquil-boba-b4a56b.netlify.app/logo%20birruti.png" alt=""></a>
+			<a href="#" class="brand"><img width="180px"
+					src="https://tranquil-boba-b4a56b.netlify.app/logo%20birruti.png" alt=""></a>
 
 			<div class="search">
 				<i class="fa-solid fa-magnifying-glass"></i>
@@ -608,57 +611,57 @@
 		// Загружаем данные при загрузке страницы
 		loadMenuData();
 
-        function renderSub(cat) {
-            console.log('Rendering category:', cat, menuData[cat]);
-            if (!menuData[cat]) {
-                console.log('No data for category:', cat);
-                return;
-            }
-            subnav.innerHTML = menuData[cat].list.map(txt => {
-                const subcategory = menuData[cat].subcategories.find(sub => sub.name === txt);
-                if (subcategory && subcategory.subsubcategories && subcategory.subsubcategories.length > 0) {
-                    return `<li><a href="#" class="subnav__link" data-sub="${txt}">${txt}</a></li>`;
-                }
-                // Если нет подподкатегорий, не делаем ссылку
-                return `<li>${txt}</li>`;
-            }).join('');
-            // Показываем первую подкатегорию в sidebar
-            if (menuData[cat].subcategories && menuData[cat].subcategories.length > 0) {
-                renderSidebar(cat, menuData[cat].subcategories[0].name);
-            }
-        }
-        function buildLvl2(label, children) {
-            console.log('buildLvl2 children:', children);
-            let lvl2 = document.getElementById('megaLvl2');
-            if (!lvl2) {
-                lvl2 = document.createElement('div');
-                lvl2.id = 'megaLvl2';
-                lvl2.className = 'mega-lvl2';
-                megaWrap.appendChild(lvl2);
-            }
+		function renderSub(cat) {
+			console.log('Rendering category:', cat, menuData[cat]);
+			if (!menuData[cat]) {
+				console.log('No data for category:', cat);
+				return;
+			}
+			subnav.innerHTML = menuData[cat].list.map(txt => {
+				const subcategory = menuData[cat].subcategories.find(sub => sub.name === txt);
+				if (subcategory && subcategory.subsubcategories && subcategory.subsubcategories.length > 0) {
+					return `<li><a href="#" class="subnav__link" data-sub="${txt}">${txt}</a></li>`;
+				}
+				// Если нет подподкатегорий, не делаем ссылку
+				return `<li>${txt}</li>`;
+			}).join('');
+			// Показываем первую подкатегорию в sidebar
+			if (menuData[cat].subcategories && menuData[cat].subcategories.length > 0) {
+				renderSidebar(cat, menuData[cat].subcategories[0].name);
+			}
+		}
+		function buildLvl2(label, children) {
+			console.log('buildLvl2 children:', children);
+			let lvl2 = document.getElementById('megaLvl2');
+			if (!lvl2) {
+				lvl2 = document.createElement('div');
+				lvl2.id = 'megaLvl2';
+				lvl2.className = 'mega-lvl2';
+				megaWrap.appendChild(lvl2);
+			}
 
-            // Универсально: разбиваем элементы массива, если внутри есть запятые
-            let items = [];
-            if (Array.isArray(children)) {
-                items = children.flatMap(item =>
-                    typeof item === 'string' && item.includes(',')
-                        ? item.split(',').map(s => s.trim()).filter(Boolean)
-                        : [item && typeof item === 'string' ? item.trim() : item]
-                );
-            } else if (typeof children === 'string') {
-                items = children.split(',').map(s => s.trim()).filter(Boolean);
-            } else if (children) {
-                items = [String(children)];
-            }
+			// Универсально: разбиваем элементы массива, если внутри есть запятые
+			let items = [];
+			if (Array.isArray(children)) {
+				items = children.flatMap(item =>
+					typeof item === 'string' && item.includes(',')
+						? item.split(',').map(s => s.trim()).filter(Boolean)
+						: [item && typeof item === 'string' ? item.trim() : item]
+				);
+			} else if (typeof children === 'string') {
+				items = children.split(',').map(s => s.trim()).filter(Boolean);
+			} else if (children) {
+				items = [String(children)];
+			}
 
-            lvl2.innerHTML = `
+			lvl2.innerHTML = `
                 <div style="font-size:20px;font-weight:700;margin-bottom:10px;">${label}</div>
                 <ul class="categories-list" style="margin:0;padding:0;list-style:none;">
                     ${items.map(c => `<li style='margin:0 0 2px 0;padding:0;font-size:17px;color:#222;'>${c}</li>`).join('')}
                 </ul>
             `;
-            lvl2.style.display = 'flex';
-        }
+			lvl2.style.display = 'flex';
+		}
 
 		function hideLvl2() {
 			const lvl2 = document.getElementById('megaLvl2');
@@ -666,48 +669,48 @@
 		}
 
 		function renderMega(cat, key) {
-	const subcategory = menuData[cat].subcategories.find(sub => sub.name === key);
-	if (!subcategory) {
-		mega.classList.remove('show');
-		return;
-	}
+			const subcategory = menuData[cat].subcategories.find(sub => sub.name === key);
+			if (!subcategory) {
+				mega.classList.remove('show');
+				return;
+			}
 
-	const subsubs = subcategory.subsubcategories || [];
+			let subsub = subcategory.subsubcategories || [];
 
-	let html = '';
+			// Разбиваем каждую subsub на отдельный .mega__col
+			megaWrap.innerHTML = subsub.map(ss => {
+				const subsubs = (ss.subsubsubcategories && ss.subsubsubcategories.length > 0)
+					? `<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 6px;">
+					${ss.subsubsubcategories.map(sss => `
+						<a href='/category-products/?subsubcat_id=${sss.id}&subsubcat_name=${encodeURIComponent(sss.name)}' class='mega__sublink'>
+							${sss.name}
+						</a>`).join('')}
+				</div>`
+					: '';
 
-	subsubs.forEach(subsub => {
-		const children = subsub.subsubsubcategories || [];
-		if (children.length === 0) return;
-
-		html += `
+				return `
 			<div class="mega__col">
-				<h4>${subsub.name}</h4>
-				<ul class="mega__list">
-					${children.map(item => `
-						<li><a href="/category-products/?subsubcat_id=${item.id}&subsubcat_name=${encodeURIComponent(item.name)}">${item.name}</a></li>
-					`).join('')}
-				</ul>
+				<div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">${ss.name}</div>
+				${subsubs}
 			</div>
 		`;
-	});
+			}).join('');
 
-	// Image block (если есть)
-	if (subcategory.image) {
-		html += `
+			// Добавим картинку справа, если есть
+			if (subcategory.image) {
+				megaWrap.insertAdjacentHTML('beforeend', `
 			<div class="mega__img">
 				<img src="${subcategory.image}" alt="${subcategory.name}">
 				<div class="mega__caption">
 					<span class="mega__caption-arrow">&#8594;</span>
-					${subcategory.caption || 'shop now'}
+					${subcategory.caption || 'Shop now'}
 				</div>
 			</div>
-		`;
-	}
+		`);
+			}
 
-	megaWrap.innerHTML = html;
-	mega.classList.add('show');
-}
+			mega.classList.add('show');
+		}
 
 		/* ---------- level‑1 events ---------- */
 		function renderNavTop() {
