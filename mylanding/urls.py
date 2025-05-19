@@ -12,13 +12,18 @@ urlpatterns = [
     path('shop/', views.shop_view, name='shop'),
     path('about/', views.about_html, name='about'),
     path('category-products/', views.category_products_view, name='category_products'),
-    path('product/', views.product_view, name='product'),
+path('product/', views.product_view, name='product_list'),         # старый вариант с ?id=
+path('product/<int:id>/', views.product_page, name='product_page'), # красивый URL с ID в path
+    
     path('women/', views.women_view, name='women'),
     path('kids/', views.kids_view, name='kids'),
     path('contacts.html', views.contacts, name='contacts'),
     path('admin/', admin.site.urls),
     path('api/', include('content.urls')),
     path('', include('content.urls')),
+
+path('product/<int:id>/', views.product_page, name='product')
+
     # path('nested_admin/', include('nested_admin.urls')),
     
 ]
