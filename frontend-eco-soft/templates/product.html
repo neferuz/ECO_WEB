@@ -1492,7 +1492,7 @@
 				.then(res => res.json())
 				.then(product => {
 					// !!! Вот тут определяем категорию !!!
-					activeCategory = product.category || 'men'; // или women
+					activeCategory = (product.category || 'men').toLowerCase();
 					renderNavTop(); // теперь меню будет с нужной категорией
 					renderSub(activeCategory);
 					renderProduct(product);
