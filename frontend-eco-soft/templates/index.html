@@ -2005,6 +2005,85 @@
                         }
                     }
                 </style>
+                <section class="logo-slider">
+                    <div class="slider-container">
+                        <div class="slider-track" id="logoSliderTrack">
+                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-1.svg"
+                                    alt="Logo 1"></div>
+                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-2.svg"
+                                    alt="Logo 2"></div>
+                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-3.svg"
+                                    alt="Logo 3"></div>
+                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-4.png"
+                                    alt="Logo 4"></div>
+                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-6.jpg"
+                                    alt="Logo 6"></div>
+                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-5.png"
+                                    alt="Logo 5"></div>
+
+                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-8.png"
+                                    alt="Logo 6"></div>
+                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-9.jpg"alt="Logo 6"></div>
+                        </div>
+                    </div>
+                </section>
+                <style>
+                    .logo-slider {
+                      padding: 60px 0;
+                      background-color: #ffffff;
+                      display: flex;
+                      justify-content: center;
+                    }
+                    
+                    .slider-container {
+                      max-width: 100%;
+                      overflow: hidden;
+                      width: 100%;
+                      max-width: 1200px;
+                    }
+                    
+                    .slider-track {
+                      display: flex;
+                      transition: transform 0.8s ease-in-out;
+                    }
+                    
+                    .logo-item {
+                      flex: 0 0 200px;
+                      height: 100px;
+                      margin: 0 10px;
+                      background: white;
+                      border-radius: 12px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    }
+                    
+                    .logo-item img {
+                      max-width: 80%;
+                      max-height: 80%;
+                      object-fit: contain;
+                    }
+                    
+                    @media (max-width: 768px) {
+                      .logo-item {
+                        flex: 0 0 140px;
+                        height: 80px;
+                      }
+                    }
+                    </style>
+                    
+                    <script>
+                      const track = document.getElementById('logoSliderTrack');
+                      const items = document.querySelectorAll('.logo-item');
+                      const visibleCount = 4; // сколько логотипов видно одновременно
+                      let index = 0;
+                    
+                      setInterval(() => {
+                        index++;
+                        if (index > items.length - visibleCount) index = 0;
+                        track.style.transform = `translateX(-${index * (items[0].offsetWidth + 20)}px)`;
+                      }, 5000);
+                    </script>
 
                 <div class="size-guide modal">
                     <div class="modal-dialog">
@@ -2312,12 +2391,12 @@
                     </script>
 
                     <script>
-                        fetch("http://127.0.0.1:8001/api/site-logo/")
+                        fetch("https://ecoweb-production.up.railway.app/api/site-logo/")
                             .then((response) => response.json())
                             .then((data) => {
                                 const logo = document.getElementById("site-logo");
                                 if (data.logo_url) {
-                                    logo.src = "http://127.0.0.1:8001" + data.logo_url;
+                                    logo.src = "https://ecoweb-production.up.railway.app" + data.logo_url;
                                     logo.style.display = "block";
                                 }
                             });
@@ -2337,7 +2416,7 @@
                     <script src="/static/js/hermes-menu.js"></script>
                     <script>
                         document.addEventListener("DOMContentLoaded", function () {
-                            fetch("http://127.0.0.1:8001/api/menu-categories/")
+                            fetch("https://ecoweb-production.up.railway.app/api/menu-categories/")
                                 .then((response) => response.json())
                                 .then((data) => {
                                     // Десктопное меню
@@ -2444,7 +2523,7 @@
                             });
                     </script>
                     <script>
-                        fetch("http://127.0.0.1:8001/api/gender-banners/")
+                        fetch("https://ecoweb-production.up.railway.app/api/gender-banners/")
                             .then((res) => res.json())
                             .then((data) => {
                                 const banners = data.banners;
@@ -2455,7 +2534,7 @@
                     <div class="pagebuilder-column" data-content-type="column">
                         <div class="single-banner">
                             <a href="${b.link}">
-                                <div class="pagebuilder-banner-wrapper" style="background-image:url('http://127.0.0.1:8001${b.image}')">
+                                <div class="pagebuilder-banner-wrapper" style="background-image:url('https://ecoweb-production.up.railway.app${b.image}')">
                                     <div class="pagebuilder-overlay pagebuilder-poster-overlay">
                                         <div class="pagebuilder-poster-content">
                                             <div data-element="content">
@@ -2564,6 +2643,7 @@
                                 document.getElementById("video-block-videos").innerHTML = videosHtml;
                             });
                     </script>
+                   
                 </footer>
             </div>
         </main>
