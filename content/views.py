@@ -11,6 +11,12 @@ from .models import Product, ProductColor
 from collections import defaultdict
 
 
+def product_page(request, id):
+    return render(request, 'product.html')
+
+
+
+
 def site_logo_api(request):
     logo_obj = SiteLogo.objects.first()
     return JsonResponse({
