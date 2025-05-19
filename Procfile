@@ -1,1 +1,1 @@
-web: python manage.py createsuperuser && gunicorn mylanding.wsgi --log-file -
+web: python create_superuser.py && gunicorn mylanding.wsgi --log-file -
