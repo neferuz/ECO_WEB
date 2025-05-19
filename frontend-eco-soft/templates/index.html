@@ -261,12 +261,12 @@
         /* ---------- КАРУСЕЛЬ ---------- */
         .carousel {
             position: relative;
-            padding-top: 60px;
+            /* padding-top: 60px; */
             /* место под стрелки */
             padding-inline: var(--gap);
             overflow: hidden;
             max-width: 1440px;
-            margin: 40px auto;
+            margin: 1px auto;
         }
 
         .carousel__track-wrapper {
@@ -1861,46 +1861,97 @@
                                             }
                                         }
                                     </style>
+                                    <style>
+                                        .manstrip-slider-wrapper {
+                                            padding: 40px 20px;
+                                            background: #ffffff;
+                                        }
 
-                                    <section class="carousel">
-                                        <h4
-                                            style="  text-transform: uppercase; text-align: center; margin-bottom: 50px;">
-                                            Our recommendations</h4>
-                                        <div class="carousel__track-wrapper"
-                                            style="position:relative;display:flex;align-items:center;">
-                                            <button class="arrow arrow--prev" aria-label="Назад">
-                                                <svg width="40" height="40" viewBox="0 0 129 174" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M75.25 123.25L65.774 110.582C58.2171 100.48 54.4387 95.4283 53.8569 89.2717C53.7144 87.7632 53.7144 86.2368 53.8569 84.7283C54.4387 78.5717 58.2171 73.5205 65.774 63.418L75.25 50.75"
-                                                        stroke="#3D3D3D" stroke-width="5" stroke-linecap="round" />
-                                                </svg>
-                                            </button>
-                                            <div class="carousel__track" id="track"></div>
-                                            <button class="arrow arrow--next" aria-label="Вперёд">
-                                                <svg width="40" height="40" viewBox="0 0 129 174" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M53.75 50.75L63.226 63.418C70.7829 73.5205 74.5613 78.5717 75.1431 84.7283C75.2856 86.2368 75.2856 87.7632 75.1431 89.2717C74.5613 95.4283 70.7829 100.48 63.226 110.582L53.75 123.25"
-                                                        stroke="#3D3D3D" stroke-width="5" stroke-linecap="round" />
-                                                </svg>
-                                            </button>
+                                        .manstrip-slider::-webkit-scrollbar {
+                                            display: none;
+                                        }
+
+                                        .manstrip-slider {
+                                            -ms-overflow-style: none;
+                                            /* IE и Edge */
+                                            scrollbar-width: none;
+                                            /* Firefox */
+                                        }
+
+                                        .manstrip-title {
+                                            font-size: 24px;
+                                            font-weight: 500;
+                                            text-align: center;
+                                            margin-bottom: 24px;
+                                            color: #222;
+                                        }
+
+                                        .manstrip-slider {
+                                            display: flex;
+                                            overflow-x: auto;
+                                            scroll-snap-type: x mandatory;
+                                            gap: 20px;
+                                            padding-bottom: 12px;
+                                            -webkit-overflow-scrolling: touch;
+                                        }
+
+                                        .manstrip-card {
+                                            flex: 0 0 auto;
+                                            width: 200px;
+                                            background: white;
+                                            border-radius: 10px;
+                                            text-align: center;
+                                            scroll-snap-align: start;
+                                            padding: 16px;
+                                            transition: transform 0.2s;
+                                        }
+
+                                        .manstrip-card:hover {
+                                            transform: scale(1.03);
+                                        }
+
+                                        .manstrip-card img {
+                                            width: 100%;
+                                            height: 180px;
+                                            object-fit: contain;
+                                            margin-bottom: 12px;
+                                        }
+
+                                        .manstrip-card .manstrip-name {
+                                            font-size: 16px;
+                                            font-weight: 500;
+                                            color: #111;
+                                            margin-bottom: 6px;
+                                        }
+
+                                        .manstrip-card .manstrip-price {
+                                            font-size: 15px;
+                                            color: #333;
+                                        }
+
+                                        @media (max-width: 768px) {
+                                            .manstrip-slider {
+                                                gap: 16px;
+                                            }
+
+                                            .manstrip-card {
+                                                width: 160px;
+                                                padding: 12px;
+                                            }
+
+                                            .manstrip-title {
+                                                font-size: 20px;
+                                            }
+                                        }
+                                    </style>
+
+
+                                    <section class="manstrip-slider-wrapper">
+                                        <h2 class="manstrip-title">Our recommendations</h2>
+                                        <div class="manstrip-slider" id="manstripSlider">
+                                            <!-- Cards will be injected here -->
                                         </div>
-
-                                        <!-- дорожка с карточками -->
-                                        <div class="carousel__track" id="track"></div>
                                     </section>
-                                    <!-- <section class="audacity">
-                                        <div class="audacity__inner">
-                                            <h2 class="audacity__title">AN&nbsp;ODE&nbsp;TO&nbsp;AUDACITY</h2>
-                                            <p class="audacity__text">
-                                                The H of Hermès takes hold of the wrist, daring it with a bold
-                                                challenge: to make every gesture a new confession of audacity.
-                                                All jewelry is allowed, as long as brilliance prevails.
-                                            </p>
-                                            <a href="#" class="audacity__cta">ADORN YOURSELF</a>
-                                        </div>
-                                    </section> -->
 
                                     <style>
                                         /* ---------- base ---------- */
@@ -2005,85 +2056,96 @@
                         }
                     }
                 </style>
-                <section class="logo-slider">
-                    <div class="slider-container">
-                        <div class="slider-track" id="logoSliderTrack">
-                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-1.svg"
-                                    alt="Logo 1"></div>
-                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-2.svg"
-                                    alt="Logo 2"></div>
-                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-3.svg"
-                                    alt="Logo 3"></div>
-                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-4.png"
-                                    alt="Logo 4"></div>
-                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-6.jpg"
-                                    alt="Logo 6"></div>
-                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-5.png"
-                                    alt="Logo 5"></div>
-
-                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-8.png"
-                                    alt="Logo 6"></div>
-                            <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-9.jpg"alt="Logo 6"></div>
-                        </div>
+               <section class="logo-slider">
+                <div class="slider-container">
+                    <div class="slider-track" id="logoSliderTrack">
+                        <!-- Оригинальные логотипы -->
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-1.svg" alt="Logo 1"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-2.svg" alt="Logo 2"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-3.svg" alt="Logo 3"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-4.png" alt="Logo 4"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-6.jpg" alt="Logo 6"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-5.png" alt="Logo 5"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-8.png" alt="Logo 8"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-9.jpg" alt="Logo 9"></div>
+            
+                        <!-- Дубликаты -->
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-1.svg" alt="Logo 1"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-2.svg" alt="Logo 2"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-3.svg" alt="Logo 3"></div>
+                        <div class="logo-item"><img src="https://stupendous-gecko-23a2fe.netlify.app/logo-4.png" alt="Logo 4"></div>
                     </div>
-                </section>
+                </div>
+            </section>
+            
                 <style>
                     .logo-slider {
-                      padding: 60px 0;
-                      background-color: #ffffff;
-                      display: flex;
-                      justify-content: center;
+                        padding: 60px 0;
+                        background-color: #ffffff;
+                        display: flex;
+                        justify-content: center;
                     }
-                    
+
                     .slider-container {
-                      max-width: 100%;
-                      overflow: hidden;
-                      width: 100%;
-                      max-width: 1200px;
+                        max-width: 100%;
+                        overflow: hidden;
+                        width: 100%;
+                        max-width: 1200px;
                     }
-                    
+
                     .slider-track {
-                      display: flex;
-                      transition: transform 0.8s ease-in-out;
+                        display: flex;
+                        width: max-content;
                     }
-                    
+
                     .logo-item {
-                      flex: 0 0 200px;
-                      height: 100px;
-                      margin: 0 10px;
-                      background: white;
-                      border-radius: 12px;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
+                        flex: 0 0 200px;
+                        height: 100px;
+                        margin: 0 10px;
+                        background: white;
+                        border-radius: 12px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
-                    
+
                     .logo-item img {
-                      max-width: 80%;
-                      max-height: 80%;
-                      object-fit: contain;
+                        max-width: 80%;
+                        max-height: 80%;
+                        object-fit: contain;
                     }
-                    
+
                     @media (max-width: 768px) {
-                      .logo-item {
-                        flex: 0 0 140px;
-                        height: 80px;
-                      }
+                        .logo-item {
+                            flex: 0 0 140px;
+                            height: 80px;
+                        }
                     }
-                    </style>
-                    
-                    <script>
-                      const track = document.getElementById('logoSliderTrack');
-                      const items = document.querySelectorAll('.logo-item');
-                      const visibleCount = 4; // сколько логотипов видно одновременно
-                      let index = 0;
-                    
-                      setInterval(() => {
-                        index++;
-                        if (index > items.length - visibleCount) index = 0;
-                        track.style.transform = `translateX(-${index * (items[0].offsetWidth + 20)}px)`;
-                      }, 5000);
-                    </script>
+                </style>
+
+<script>
+    const track = document.getElementById('logoSliderTrack');
+    const items = document.querySelectorAll('.logo-item');
+    const itemWidth = items[0].offsetWidth + 20; // ширина + margin
+    let index = 0;
+
+    function moveSlider() {
+        index++;
+        track.style.transition = 'transform 0.6s ease-in-out';
+        track.style.transform = `translateX(-${index * itemWidth}px)`;
+
+        // когда доходим до конца оригинальных логотипов
+        if (index >= items.length / 2 + 4) {
+            setTimeout(() => {
+                track.style.transition = 'none';
+                index = 0;
+                track.style.transform = `translateX(0px)`;
+            }, 600);
+        }
+    }
+
+    setInterval(moveSlider, 3000);
+</script>
 
                 <div class="size-guide modal">
                     <div class="modal-dialog">
@@ -2643,7 +2705,37 @@
                                 document.getElementById("video-block-videos").innerHTML = videosHtml;
                             });
                     </script>
-                   
+                    <script>
+                        async function loadMenSlider() {
+                            const res = await fetch("https://ecoweb-production.up.railway.app/api/products/?gender=men");
+                            const products = await res.json();
+                            const container = document.getElementById("manstripSlider");
+
+                            container.innerHTML = products.map(p => `
+                            <div class="manstrip-card" onclick="window.location.href='/product.html?id=${p.id}'">
+                              <img src="${p.main_image.startsWith('http') ? p.main_image : 'https://ecoweb-production.up.railway.app' + p.main_image}" alt="${p.title}">
+                              <div class="manstrip-name">${p.title}</div>
+                              <div class="manstrip-price">$${p.price}</div>
+                            </div>
+                          `).join('');
+
+                            // Автопрокрутка
+                            let scrollPos = 0;
+                            const scrollStep = 220; // ширина карточки + gap
+                            const maxScroll = container.scrollWidth - container.clientWidth;
+
+                            setInterval(() => {
+                                scrollPos += scrollStep;
+                                if (scrollPos >= maxScroll) scrollPos = 0;
+                                container.scrollTo({
+                                    left: scrollPos,
+                                    behavior: 'smooth'
+                                });
+                            }, 5000); // каждые 5 секунд
+                        }
+
+                        loadMenSlider();
+                    </script>
                 </footer>
             </div>
         </main>
