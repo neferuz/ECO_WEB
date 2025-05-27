@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>BIRRUTI {{ subsubcat_name }}</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+	<style>
+		.product-card img {
+			width: 100%;
+			height: auto;
+			max-height: 240px;
+			object-fit: contain;
+			background: #f7f7f7;
+			padding: 8px;
+		}
+
+		@media (max-width: 600px) {
+			.product-card img {
+				height: auto;
+				max-height: 240px;
+				object-fit: contain;
+			}
+		}
+
+		@media (max-width: 600px) {
+			.product-card {
+				width: 100%;
+				max-width: 100%;
+
+				height: 100%;
+				padding: 12px;
+				border-radius: 10px;
+			}
+
+			.product-card img {
+				width: 100%;
+				height: 240px;
+				object-fit: contain;
+				background: #f7f7f7;
+			}
+
+
+			.product-title {
+				font-size: 16px;
+				margin-top: 8px;
+			}
+
+			.product-price {
+				font-size: 15px;
+			}
+		}
+
+		.mega__wrap {
+			justify-content: flex-start !important;
+			align-items: flex-start;
+		}
+
+		.product-logo {
+			height: 28px;
+			object-fit: contain;
+			margin-bottom: 6px;
+		}
+
+		.color-swatches {
+			display: flex;
+			gap: 6px;
+			margin-top: 8px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.swatch {
+			width: 35px;
+			height: 40px;
+			background-size: cover;
+			background-position: center;
+			cursor: pointer;
+			border: 1px solid #ddd;
+		}
+
+
+		.mega__col {
+			flex: 0 0 auto;
+			width: auto;
+			max-width: 200px;
+		}
+
+		.mega__col ul {
+			gap: 6px;
+		}
+
+		.has-subsubsub {
+			margin-bottom: 12px;
+		}
+
+		.mega__col h4 {
+			font-size: 16px;
+			font-weight: 600;
+			margin-bottom: 8px;
+			color: #000;
+		}
+
+		.mega__col ul {
+			list-style: none;
+			padding-left: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.mega__col li a {
+			font-size: 14px;
+			color: #333;
+			text-decoration: none;
+		}
+
+		.mega__col li a:hover {
+			color: var(--hover);
+		}
+
+
+		.subsubsub-list {
+			margin-top: 6px;
+			margin-left: 12px;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.subsubsub-list a {
+			font-size: 14px;
+			color: #333;
+			text-decoration: none;
+		}
+
+		.subsubsub-list a:hover {
+			color: var(--hover);
+		}
+
+		.has-child ul {
+			margin-left: 12px;
+			margin-top: 8px;
+		}
+
+		.products-grid {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 32px;
+			justify-content: center;
+			margin-bottom: 60px;
+		}
+
+		.product-card {
+			background: #fff;
+			border: 1px solid #e0e0e0;
+			width: 250px;
+			height: 380px;
+			overflow: hidden;
+			transition: box-shadow 0.2s;
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.product-card:hover {
+			box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+		}
+
+		.product-card img {
+			width: 100%;
+			height: 240px;
+			background: #ffffff;
+		}
+
+		.product-title {
+			font-size: 17px;
+			font-weight: 400;
+			margin: 12px 0 4px;
+			text-align: center;
+			color: #2e2e2e;
+		}
+
+		.product-price {
+			font-size: 16px;
+			color: #2e2e2e;
+			font-weight: 400;
+			margin-bottom: 14px;
+		}
+
+		@media (max-width: 600px) {
+			.products-grid {
+				gap: 16px;
+			}
+
+			.product-card {
+				width: 90vw;
+				min-width: 180px;
+				max-width: 98vw;
+			}
+
+			.product-card img {
+				height: 180px;
+			}
+		}
+
+		.nav-top__btn {
+			text-decoration: none;
+		}
+
+		:root {
+			--gap: 32px;
+			--accent: #000;
+			--hover: #1c1c1c;
+			--brand: #006838;
+			--f: 'Helvetica Neue', Arial, sans-serif;
+		}
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			font-family: var(--f);
+		}
+
+		body {
+			color: #000;
+			background: #ffffff;
+			line-height: 1.35;
+			font-family: 'Helvetica Neue', Arial, sans-serif;
+			background: #ffffff;
+			overflow-x: hidden;
+		}
+
+		/* ---------- header ---------- */
+		.header {
+			position: sticky;
+			top: 0;
+			z-index: 100;
+			background: #ffffff;
+			border-bottom: 1px solid #9e9e9e;
+		}
+
+		.header__row {
+			max-width: 1440px;
+			margin: 0 auto;
+			padding: 0 var(--gap);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			height: 80px;
+		}
+
+		.nav-top {
+			display: flex;
+			gap: var(--gap);
+		}
+
+		.nav-top__btn {
+			background: none;
+			border: none;
+			cursor: pointer;
+			font-size: 15px;
+			letter-spacing: 1px;
+			color: var(--accent);
+			position: relative;
+		}
+
+		.nav-top__btn:hover::after,
+		.nav-top__btn.is-active::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -6px;
+			width: 100%;
+			height: 2px;
+			background: var(--accent);
+		}
+
+		.nav-top__btn:hover {
+			color: var(--hover);
+		}
+
+		.brand {
+			font-weight: 700;
+			font-size: 26px;
+			letter-spacing: 6px;
+			text-decoration: none;
+			color: var(--accent);
+			text-align: center;
+		}
+
+		.brand span {
+			display: block;
+			font-size: 11px;
+			letter-spacing: 4px;
+			font-weight: 400;
+		}
+
+		.search {
+			position: relative;
+			width: 240px;
+		}
+
+		.search input {
+			width: 100%;
+			padding: 10px 36px 10px 40px;
+			border: 1px solid #ddd;
+			font-size: 14px;
+		}
+
+		.search i {
+			position: absolute;
+			left: 12px;
+			top: 50%;
+			transform: translateY(-50%);
+			color: #666;
+			font-size: 18px;
+		}
+
+		/* ---------- level‑2 ---------- */
+		.subnav {
+			border-top: 1px solid #848484;
+		}
+
+		.subnav__list {
+			max-width: 1440px;
+			margin: 0 auto;
+			padding: 10px var(--gap);
+			display: flex;
+			text-decoration: none;
+			gap: 32px;
+			list-style: none;
+		}
+
+		.subnav__link {
+			text-decoration: none;
+			color: #0e0e0e;
+			text-decoration: none;
+			font-size: 15px;
+		}
+
+		.subnav__link:hover,
+		.subnav__link.is-active {
+			color: var(--accent);
+		}
+
+		/* ---------- mega ---------- */
+		.mega {
+			display: none;
+			position: absolute;
+			text-decoration: none;
+			left: 0;
+			right: 0;
+			font-family: 'Helvetica Neue', Arial, sans-serif;
+			top: 100%;
+			background: #ffffff;
+			line-height: 1.35;
+			border-bottom: 1px solid #828282;
+			box-shadow: 0 6px 12px rgba(0, 0, 0, .05);
+		}
+
+		.mega.show {
+			display: block;
+		}
+
+		.mega__wrap {
+			justify-content: flex-start;
+			/* вместо center */
+			align-items: flex-start;
+		}
+
+
+		.mega__wrap {
+			max-width: 1440px;
+			margin: 0 auto;
+			padding: 32px var(--gap);
+			display: flex;
+			gap: 64px;
+			position: relative;
+		}
+
+		.mega__col {
+			flex: 1;
+			min-width: 160px;
+		}
+
+		.mega__col h4 {
+			margin-bottom: 12px;
+			font-size: 18px;
+			font-weight: 600;
+		}
+
+		.mega__col ul {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.mega__col a {
+			text-decoration: none;
+			color: var(--accent);
+			font-size: 15px;
+			position: relative;
+		}
+
+		.mega__col a:hover {
+			color: var(--hover);
+		}
+
+		.has-child::after {
+			content: '\f105';
+			font-weight: 400;
+			position: absolute;
+			right: -14px;
+			top: 0;
+			font-size: 12px;
+		}
+
+		.has-child {
+			position: relative;
+		}
+
+		.has-child:hover .deep-list {
+			display: block;
+		}
+
+		.deep-list {
+			display: none;
+			position: absolute;
+			left: 100%;
+			top: 0;
+			background: white;
+			border: 1px solid #ccc;
+			padding: 12px;
+			min-width: 160px;
+		}
+
+		.deep-list li {
+			margin-bottom: 8px;
+		}
+
+		/* level‑4 */
+		.mega-lvl2 {
+			position: absolute;
+			top: 0;
+			left: 100%;
+			width: 260px;
+			height: 100%;
+			background: #fff;
+			border-left: 1px solid #848484;
+			padding: 32px var(--gap);
+			display: none;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		.mega-lvl2 h5 {
+			font-size: 17px;
+			font-weight: 600;
+			margin-bottom: 8px;
+		}
+
+		.mega-lvl2 a {
+			text-decoration: none;
+			color: var(--accent);
+			font-size: 15px;
+		}
+
+		.mega-lvl2 a:hover {
+			color: var(--hover);
+		}
+
+		/* ---------- image block ---------- */
+		.mega__img {
+			flex: 0 0 260px;
+			display: flex;
+			flex-direction: column;
+			gap: 18px;
+			align-items: flex-start;
+		}
+
+		.mega__img img {
+			width: 100%;
+			object-fit: cover;
+		}
+
+		.mega__shop {
+			text-decoration: none;
+			font-size: 16px;
+			color: var(--accent);
+			font-weight: 600;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.mega__shop i {
+			transform: rotate(-45deg);
+		}
+
+		/* ---------- burger ---------- */
+		.burger {
+			display: none;
+			background: none;
+			border: none;
+			font-size: 22px;
+			cursor: pointer;
+			color: var(--accent);
+		}
+
+		@media (max-width:767px) {
+
+			.nav-top,
+			.search,
+			.subnav,
+			.mega {
+				display: none !important;
+			}
+
+			.burger {
+				display: block;
+			}
+
+			.header__row {
+				height: 60px;
+			}
+		}
+
+		/* ---------- mobile menu ---------- */
+		.m-overlay {
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, .4);
+			opacity: 0;
+			visibility: hidden;
+			transition: .3s;
+			z-index: 140;
+		}
+
+		.m-overlay.is-open {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.m-menu {
+			position: fixed;
+			top: 0;
+			left: -100%;
+			width: 80%;
+			max-width: 340px;
+			height: 100%;
+			background: #fff;
+			box-shadow: 2px 0 12px rgba(0, 0, 0, .1);
+			overflow-y: auto;
+			transition: left .3s ease;
+			z-index: 150;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.m-menu.is-open {
+			left: 0;
+		}
+
+		.m-menu__head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 18px 20px;
+			border-bottom: 1px solid #eee;
+		}
+
+		.m-menu__head h3 {
+			font-size: 18px;
+			font-weight: 600;
+		}
+
+		.m-close {
+			background: none;
+			border: none;
+			font-size: 22px;
+			cursor: pointer;
+			color: var(--accent);
+		}
+
+		.m-acc {
+			border-bottom: 1px solid #eee;
+		}
+
+		.m-acc summary {
+			list-style: none;
+			padding: 16px 20px;
+			font-size: 15px;
+			font-weight: 600;
+			cursor: pointer;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.m-acc summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.m-acc ul {
+			padding: 0 26px 12px;
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		.m-acc a {
+			text-decoration: none;
+			color: var(--accent);
+			font-size: 15px;
+		}
+
+		.m-acc a:hover {
+			color: var(--hover);
+		}
+
+		.noscroll {
+			overflow: hidden;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+
+	<header class="header">
+		<div class="header__row">
+			<button class="burger" id="burger"><i class="fa-solid fa-bars"></i></button>
+
+			<nav class="nav-top" id="navTop"></nav>
+
+			<a href="#" class="brand"><img width="180px"
+					src="https://tranquil-boba-b4a56b.netlify.app/logo%20birruti.png" alt=""></a>
+
+			<div class="search">
+				<i class="fa-solid fa-magnifying-glass"></i>
+				<input type="search" placeholder="Search">
+			</div>
+		</div>
+
+		<nav class="subnav">
+			<ul class="subnav__list" id="subnavList"></ul>
+		</nav>
+
+		<div class="mega" id="mega">
+			<div class="mega__wrap" id="megaWrap"></div>
+		</div>
+	</header>
+
+	<!-- mobile -->
+	<div class="m-overlay" id="mOverlay"></div>
+	<nav class="m-menu" id="mMenu">
+		<div class="m-menu__head">
+			<h3>Menu</h3>
+			<button class="m-close" id="mClose"><i class="fa-solid fa-xmark"></i></button>
+		</div>
+		<div id="mContent"></div>
+	</nav>
+	<main>
+		<h1 id="subsubcat-title" style="text-align:center; font-weight: 400; margin: 40px 0 24px;"></h1>
+
+		<div id="products-grid" class="products-grid"></div>
+	</main>
+	<script>
+		let menuData = {};
+		const navTop = document.getElementById('navTop');
+		const subnav = document.getElementById('subnavList');
+		const mega = document.getElementById('mega');
+		const megaWrap = document.getElementById('megaWrap');
+		const getSubSubSubCatIdFromUrl = () => new URLSearchParams(window.location.search).get('subsubsubcat_id');
+		const getCategoryFromUrl = () => new URLSearchParams(location.search).get('category');
+		const getSubSubCatIdFromUrl = () => new URLSearchParams(location.search).get('subsubcat_id');
+		const getSubSubCatNameFromUrl = () => new URLSearchParams(location.search).get('subsubcat_name');
+		async function loadMenuData() {
+	try {
+		const res = await fetch('http://localhost:8001/api/shop-menu/');
+		menuData = await res.json();
+
+		const subsubcatId = getSubSubCatIdFromUrl();
+		const subsubsubcatId = getSubSubSubCatIdFromUrl();
+
+		function findCategoryBySubSubCatId(id) {
+			for (const [cat, val] of Object.entries(menuData)) {
+				for (const sub of val.subcategories || []) {
+					for (const subsub of sub.subsubcategories || []) {
+						if (String(subsub.id) === id) return cat;
+						for (const sss of subsub.subsubsubcategories || []) {
+							if (String(sss.id) === id) return cat;
+						}
+					}
+				}
+			}
+			return null;
+		}
+
+		// 🟢 Правильно находим активную категорию
+		let activeCat = findCategoryBySubSubCatId(subsubsubcatId || subsubcatId) || 'men';
+
+		// 🟢 Используем activeCat
+		renderNavTop(activeCat);
+		renderSub(activeCat);
+		buildMobile();
+
+		document.querySelectorAll('.nav-top__btn').forEach(btn => {
+			if (btn.dataset.cat === activeCat) {
+				btn.classList.add('is-active');
+			}
+		});
+	} catch (e) {
+		console.error('Ошибка при загрузке меню', e);
+	}
+}
+
+		function renderNavTop(activeCat) {
+			navTop.innerHTML = '';
+			Object.keys(menuData).forEach((cat) => {
+				if (cat.toLowerCase() === 'kids') return; // ⛔️ Пропускаем kids
+
+				const btn = document.createElement('a');
+				btn.className = 'nav-top__btn' + (cat === activeCat ? ' is-active' : '');
+				btn.dataset.cat = cat;
+				btn.textContent = menuData[cat].name?.toUpperCase() || cat.toUpperCase();
+
+				if (menuData[cat].link) {
+					// ✅ Если в админке задана ссылка — использовать как есть
+					btn.href = menuData[cat].link;
+				} else {
+					// ✅ Иначе — обычное переключение категории
+					btn.href = `?category=${cat}`;
+					btn.addEventListener('click', (e) => {
+						e.preventDefault();
+						document.querySelector('.nav-top__btn.is-active')?.classList.remove('is-active');
+						btn.classList.add('is-active');
+						renderSub(cat);
+						mega.classList.remove('show');
+						window.history.replaceState({}, '', `?category=${cat}`);
+					});
+				}
+
+				navTop.appendChild(btn);
+			});
+		}
+
+		function openBurger() {
+			document.getElementById('mMenu').classList.add('is-open');
+			document.getElementById('mOverlay').classList.add('is-open');
+			document.body.classList.add('noscroll');
+		}
+
+		function closeBurger() {
+			document.getElementById('mMenu').classList.remove('is-open');
+			document.getElementById('mOverlay').classList.remove('is-open');
+			document.body.classList.remove('noscroll');
+		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			document.getElementById('burger').onclick = openBurger;
+			document.getElementById('mClose').onclick = closeBurger;
+			document.getElementById('mOverlay').onclick = closeBurger;
+		});
+
+
+		function renderSub(cat) {
+			if (!menuData[cat]) return;
+			subnav.innerHTML = menuData[cat].list.map(txt => {
+				const sub = menuData[cat].subcategories.find(s => s.name === txt);
+				if (sub?.link) {
+					return `<li><a href="${sub.link}" class="subnav__link">${txt}</a></li>`;
+				}
+				if (sub?.subsubcategories?.length) {
+					return `<li><a href="#" class="subnav__link" data-sub="${txt}">${txt}</a></li>`;
+				}
+				return `<li>${txt}</li>`;
+			}).join('');
+		}
+
+		subnav.addEventListener('click', function (e) {
+			const link = e.target.closest('.subnav__link');
+			if (!link) return;
+			if (link.dataset.sub) {
+				e.preventDefault();
+				const cat = getCategoryFromUrl();
+				const sub = link.dataset.sub;
+				renderMega(cat, sub);
+			}
+		});
+
+		subnav.addEventListener('mouseover', function (e) {
+			const link = e.target.closest('.subnav__link');
+			if (!link) return;
+			const activeCat = document.querySelector('.nav-top__btn.is-active')?.dataset.cat || 'men';
+			const sub = link.dataset.sub;
+			renderMega(activeCat, sub);
+		});
+
+		function renderMega(cat, key) {
+			const subcategory = menuData[cat]?.subcategories?.find(sub => sub.name === key);
+			if (!subcategory) return;
+			const subsubcategories = subcategory.subsubcategories || [];
+			megaWrap.innerHTML = '';
+
+			subsubcategories.forEach(subsubcat => {
+				let html = `<div class="mega__col"><h4>${subsubcat.name}</h4><ul>`;
+				if (subsubcat.subsubsubcategories?.length > 0) {
+					html += subsubcat.subsubsubcategories.map(sss => `
+						<li><a href="/category-products/?subsubcat_id=${subsubcat.id}&subsubcat_name=${encodeURIComponent(subsubcat.name)}&subsubsubcat_id=${sss.id}&subsubsubcat_name=${encodeURIComponent(sss.name)}">${sss.name}</a></li>
+					`).join('');
+				} else {
+					html += `<li><a href="/category-products/?subsubcat_id=${subsubcat.id}&subsubcat_name=${encodeURIComponent(subsubcat.name)}">${subsubcat.name}</a></li>`;
+				}
+				html += `</ul></div>`;
+				megaWrap.insertAdjacentHTML('beforeend', html);
+			});
+
+			const obj = menuData[cat]?.mega?.[key];
+			if (obj?.image) {
+				megaWrap.insertAdjacentHTML('beforeend', `
+					<div class="mega__img">
+						<a href="${obj.image.link}"><img src="${obj.image.src}" alt="${obj.image.alt}"></a>
+						<a href="${obj.image.link}" class="mega__shop"><i class="fa-solid fa-arrow-up"></i>${obj.image.caption}</a>
+					</div>
+				`);
+			}
+
+			mega.classList.add('show');
+		}
+
+		function buildMobile() {
+			const mContent = document.getElementById('mContent');
+			mContent.innerHTML = Object.entries(menuData).map(([cat, val]) => {
+				const subItems = val.list.map(sub => {
+					const subData = val.mega?.[sub];
+					if (!subData) return `<li>${sub}</li>`;
+					const deepCols = subData.cols.map(col => `
+						<li><strong>${col.title}</strong>
+							<ul>${col.items.map(i => {
+						const ss = val.subcategories.find(s => s.name === sub)?.subsubcategories.find(s => s.name === i);
+						if (ss?.id) {
+							return `<li><a href="/category-products/?subsubcat_id=${ss.id}&subsubcat_name=${encodeURIComponent(ss.name)}">${ss.name}</a></li>`;
+						}
+						return `<li>${i}</li>`;
+					}).join('')}</ul>
+						</li>`).join('');
+					return `<li><details class="m-acc"><summary>${sub}</summary><ul>${deepCols}</ul></details></li>`;
+				}).join('');
+				return `<details class="m-acc"><summary>${cat.toUpperCase()}</summary><ul>${subItems}</ul></details>`;
+			}).join('');
+		}
+
+		function renderProducts(products) {
+			const grid = document.getElementById('products-grid');
+			if (!grid) return;
+
+			grid.innerHTML = products.map(p => {
+				const productId = p.id;
+				const image = p.main_image;
+				const swatches = (p.colors || []).slice(0, 6).map(c => `
+					<span class="swatch"
+						  style="background-image: url('${c.color_image}')"
+						  onclick="event.stopPropagation(); changeProductImage(${productId}, '${c.color_image}')">
+					</span>`).join('');
+
+				return `
+					<div class="product-card" onclick="window.location.href='/product.html?id=${productId}'">
+						<img class="product-main" id="product-image-${productId}" src="${image}" alt="${p.title}">
+						<div class="product-title">${p.title}</div>
+						<div class="product-price">$${p.price}</div>
+						<div class="color-swatches">${swatches}</div>
+					</div>
+				`;
+			}).join('');
+		}
+
+		function changeProductImage(productId, imageUrl) {
+			const img = document.getElementById(`product-image-${productId}`);
+			if (img) img.src = imageUrl;
+		}
+		async function loadProductsBySubSubCat() {
+			const subsubcatId = getSubSubCatIdFromUrl();
+			const subsubsubId = getSubSubSubCatIdFromUrl();
+			const name = new URLSearchParams(window.location.search).get('subsubsubcat_name') ||
+				new URLSearchParams(window.location.search).get('subsubcat_name');
+			let url = '';
+
+			if (subsubsubId) {
+				url = `http://localhost:8001/api/products/?subsubsubcategory_id=${subsubsubId}`;
+			} else if (subsubcatId) {
+				// делаем запрос к API, чтобы проверить, есть ли подкатегории
+				const menuRes = await fetch('http://localhost:8001/api/shop-menu/');
+				const fullMenu = await menuRes.json();
+
+				// ищем нужный subsubcat и его вложенные subsubsub
+				let found = null;
+				for (const cat of Object.values(fullMenu)) {
+					for (const sub of cat.subcategories || []) {
+						for (const subsub of sub.subsubcategories || []) {
+							if (String(subsub.id) === subsubcatId) {
+								found = subsub;
+								break;
+							}
+						}
+					}
+				}
+
+				if (found?.subsubsubcategories?.length > 0) {
+					const firstSubSubSub = found.subsubsubcategories[0];
+					url = `http://localhost:8001/api/products/?subsubsubcategory_id=${firstSubSubSub.id}`;
+				} else {
+					url = `http://localhost:8001/api/products/?subsubcat_id=${subsubcatId}`;
+				}
+			} else {
+				return;
+			}
+
+			document.getElementById('subsubcat-title').textContent = decodeURIComponent(name || 'Products');
+
+			fetch(url)
+				.then(res => res.json())
+				.then(async products => {
+					if (!products || products.length === 0) {
+						document.getElementById('products-grid').innerHTML = `<p style="text-align:center; font-size: 16px;">No products available yet.</p>`;
+						return;
+					}
+
+					const detailedProducts = await Promise.all(products.map(async (p) => {
+						const detailRes = await fetch(`http://localhost:8001/api/product/${p.id}/`);
+						const detail = await detailRes.json();
+						return { ...p, colors: detail.colors || [] };
+					}));
+
+					renderProducts(detailedProducts);
+				})
+				.catch(() => {
+					document.getElementById('products-grid').innerHTML = '<p style="text-align:center; font-size: 16px;">Error loading products.</p>';
+				});
+		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			loadMenuData().then(() => {
+				loadProductsBySubSubCat();
+				const subsubcatId = getSubSubCatIdFromUrl();
+				const subsubsubcatId = getSubSubSubCatIdFromUrl();
+				let activeCat = findCategoryBySubSubCatId(subsubsubcatId || subsubcatId) || 'men';
+
+			});
+		});
+
+		mega.addEventListener('mouseleave', () => {
+			mega.classList.remove('show');
+		});
+	</script>
+</body>
+
+</html>

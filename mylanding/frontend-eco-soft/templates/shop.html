@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BIRRUTI Men</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        .products-grid {
+            display: grid;
+            gap: 32px;
+            padding: 0 16px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        @media (min-width: 1025px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+                /* 💻 Десктоп */
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+                /* 📱 Планшет */
+            }
+        }
+
+        @media (min-width: 541px) and (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 📱 Телефон большой */
+            }
+        }
+
+        @media (max-width: 540px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 📱 Телефон маленький — 2 тоже красиво */
+            }
+        }
+
+
+        /* Планшеты */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Телефоны большие */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        /* Телефоны маленькие */
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+        .scroll-buttons-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: auto;
+            /* по высоте кнопок */
+        }
+
+        .scroll-btn {
+            position: relative;
+            transform: none;
+            top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-buttons-wrapper {
+                align-items: flex-start;
+            }
+
+            .scroll-btn {
+                top: 42px;
+                /* фиксированная высота, чтобы совпало с кнопками */
+                transform: translateY(0);
+            }
+        }
+
+        .subsubsub-scroll-wrapper {
+            position: relative;
+            overflow-x: auto;
+            max-width: 100%;
+            margin: 0 auto;
+            scroll-behavior: smooth;
+        }
+
+        .subsubsub-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 10px 32px;
+            /* чтобы стрелки не перекрывали */
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE 10+ */
+        }
+
+        .subsubsub-scroll::-webkit-scrollbar {
+            display: none;
+            /* Chrome */
+        }
+
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 1px solid #ccc;
+            padding: 6px;
+            z-index: 5;
+            cursor: pointer;
+        }
+
+        .scroll-btn.left {
+            left: 0;
+        }
+
+        .scroll-btn.right {
+            right: 0;
+        }
+
+        /* На мобилке уменьшим стрелки и спрячем их, если не влезают */
+        @media (max-width: 768px) {
+            .scroll-btn {
+                padding: 4px;
+                background: none;
+                border: none;
+            }
+        }
+
+        #subsubsub-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 24px;
+            overflow: visible;
+            white-space: normal;
+        }
+
+        #subsubsub-buttons::-webkit-scrollbar {
+            display: none;
+        }
+
+        #subsubsub-buttons {
+            -ms-overflow-style: none;
+            /* IE/Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+
+        /* Только для мобильных — разрешаем скролл */
+        @media (max-width: 768px) {
+            #subsubsub-buttons {
+                overflow-x: auto;
+                white-space: nowrap;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                padding: 0 12px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .subsubsub-btn {
+                white-space: nowrap;
+                scroll-snap-align: start;
+                font-size: 13px;
+                padding: 6px 12px;
+                flex-shrink: 0;
+            }
+
+            /* Убираем кастомные стрелки или скроллы браузера */
+            #subsubsub-buttons::-webkit-scrollbar {
+                display: none;
+            }
+
+            #subsubsub-buttons {
+                -ms-overflow-style: none;
+                /* IE и Edge */
+                scrollbar-width: none;
+                /* Firefox */
+            }
+        }
+
+        .brand img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        @media (max-width: 767px) {
+            .brand {
+                margin: 0 auto;
+                display: block;
+                padding-top: 6px;
+                padding-bottom: 6px;
+            }
+
+            .brand img {
+                width: 130px;
+            }
+        }
+
+        .subsubsub-scroll-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            flex-grow: 1;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE 10+ */
+        }
+
+        .subsubsub-scroll-wrapper::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari */
+        }
+
+        .subsubsub-btn.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+
+
+        @media (max-width: 600px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
+
+
+        .scroll-buttons-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            position: relative;
+            margin-bottom: 24px;
+            padding: 0 12px;
+        }
+
+        .subsubsub-scroll-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            flex-grow: 1;
+        }
+
+        .subsubsub-scroll {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 8px;
+            min-width: max-content;
+        }
+
+        .scroll-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+
+        .scroll-btn:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 16px;
+            }
+        }
+
+
+        .product-card {
+            width: 100%;
+            max-width: unset;
+        }
+
+
+        .subsubsub-btn {
+            padding: 8px 14px;
+            background: #ffffff;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            border-radius: 4px;
+            font-weight: 400;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .subsubsub-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .color-swatches {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .swatch {
+            width: 35px;
+            height: 35px;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .nav-top__btn {
+            text-decoration: none;
+        }
+
+        .kids-full-image {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .kids-full-image__img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            margin-top: 20px;
+        }
+
+
+
+        :root {
+            --gap: 32px;
+            --accent: #000;
+            --hover: #1c1c1c;
+            --brand: #000000;
+            --f: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--f);
+        }
+
+        body {
+            color: #000;
+            background: #ffffff !important;
+            line-height: 1.35;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ---------- header ---------- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #ffffff;
+            border-bottom: 1px solid #9e9e9e;
+        }
+
+        .header__row {
+            max-width: 1440px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 0 var(--gap);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .nav-top {
+            display: flex;
+            gap: var(--gap);
+        }
+
+        .nav-top__btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            letter-spacing: 1px;
+            color: var(--accent);
+            position: relative;
+        }
+
+        .nav-top__btn:hover::after,
+        .nav-top__btn.is-active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .nav-top__btn:hover {
+            color: var(--hover);
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 26px;
+            letter-spacing: 6px;
+            text-decoration: none;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .brand span {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 4px;
+            font-weight: 400;
+        }
+
+        .search {
+            position: relative;
+            width: 240px;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 10px 36px 10px 40px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .search i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 18px;
+        }
+
+        /* ---------- level‑2 ---------- */
+        .subnav {
+            border-top: 1px solid #848484;
+        }
+
+        .subnav__list {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 10px var(--gap);
+            display: flex;
+            text-decoration: none;
+            gap: 32px;
+            background-color: #fff;
+            list-style: none;
+        }
+
+        .subnav__link {
+            text-decoration: none;
+            color: #0e0e0e;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .subnav__link:hover,
+        .subnav__link.is-active {
+            color: var(--accent);
+        }
+
+        /* ---------- mega ---------- */
+        .mega {
+            display: none;
+            position: absolute;
+            text-decoration: none;
+            left: 0;
+            right: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            top: 100%;
+            background: #ffffff;
+            line-height: 1.35;
+            border-bottom: 1px solid #828282;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .05);
+        }
+
+        .mega.show {
+            display: block;
+        }
+
+        .mega__wrap {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 15px var(--gap);
+            display: flex;
+            gap: 64px;
+            position: relative;
+        }
+
+        .mega__col {
+            flex: 0 0 auto;
+            width: 230px;
+        }
+
+        .mega__col h4 {
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .mega__col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mega__col a {
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 15px;
+            position: relative;
+        }
+
+        .mega__col a:hover {
+            color: var(--hover);
+        }
+
+        .has-child::after {
+            content: '\f105';
+            font-weight: 400;
+            position: absolute;
+            right: -14px;
+            top: 0;
+            font-size: 12px;
+        }
+
+        /* level‑4 */
+        .mega-lvl2 {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 260px;
+            height: 100%;
+            background: #fff;
+            border-left: 1px solid #848484;
+            padding: 32px var(--gap);
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mega-lvl2 h5 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .mega-lvl2 a {
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 15px;
+        }
+
+        .mega-lvl2 a:hover {
+            color: var(--hover);
+        }
+
+        /* ---------- image block ---------- */
+        .mega__img {
+            flex: 0 0 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .mega__img img {
+            width: 220px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .mega__caption {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #222;
+            font-weight: 500;
+            margin-top: 18px;
+            gap: 10px;
+        }
+
+        .mega__caption-arrow {
+            display: inline-block;
+            font-size: 22px;
+            margin-right: 8px;
+            transform: translateY(2px);
+        }
+
+        .mega__shop {
+            text-decoration: none;
+            font-size: 16px;
+            color: var(--accent);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mega__shop i {
+            transform: rotate(-45deg);
+        }
+
+        /* ---------- burger ---------- */
+        .burger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--accent);
+        }
+
+        @media (max-width:767px) {
+
+            .nav-top,
+            .search,
+            .subnav,
+            .mega {
+                display: none !important;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .header__row {
+                height: 60px;
+            }
+        }
+
+        /* ---------- mobile menu ---------- */
+        .m-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .4);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            z-index: 140;
+        }
+
+        .m-overlay.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .m-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 340px;
+            height: 100%;
+            background: #fff;
+            box-shadow: 2px 0 12px rgba(0, 0, 0, .1);
+            overflow-y: auto;
+            transition: left .3s ease;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .m-menu.is-open {
+            left: 0;
+        }
+
+        .m-menu__head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .m-menu__head h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .m-close {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--accent);
+        }
+
+        .m-acc {
+            border-bottom: 1px solid #eee;
+        }
+
+        .m-acc summary {
+            list-style: none;
+            padding: 16px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .m-acc summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .m-acc ul {
+            padding: 0 26px 12px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .m-acc a {
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 15px;
+        }
+
+        .m-acc a:hover {
+            color: var(--hover);
+        }
+
+        .noscroll {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .products-grid {
+
+            gap: 32px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            width: 100%;
+            max-width: 240px;
+            height: 380px;
+            /* одинаковая высота у всех карточек */
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 12px 8px;
+            box-sizing: border-box;
+        }
+
+
+
+
+        .product-card:hover {
+            /* box-shadow: 0 6px 24px rgba(0,0,0,0.10); */
+        }
+
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background: #ffffff;
+        }
+
+        .product-title {
+            font-size: 17px;
+            font-weight: 500;
+            margin: 12px 0 4px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            color: #222;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #222;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        /* ---------- mega-menu современный стиль ---------- */
+        .mega__wrap {
+            gap: 48px !important;
+        }
+
+        .mega__col {
+            min-width: 180px;
+        }
+
+        .mega__title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .mega__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mega__item {
+            font-size: 17px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .mega__sublist {
+            list-style: disc;
+            margin: 4px 0 0 18px;
+            padding: 0;
+            color: #888;
+        }
+
+        .mega__subitem {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        @media (max-width: 900px) {
+            .mega__wrap {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 24px !important;
+            }
+
+            .mega__col {
+                min-width: 140px;
+            }
+        }
+
+        .mega__subline {
+            color: #888;
+            font-size: 14px;
+            margin-left: 0;
+            margin-top: 2px;
+            display: block;
+            font-weight: 400;
+        }
+
+        .mega__sublink {
+            color: #888;
+            font-size: 14px;
+            display: flex;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 400;
+        }
+
+        .mega__sublink:hover {
+            color: #222;
+            text-decoration: underline;
+        }
+
+        .categories-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .categories-list li {
+            font-size: 17px;
+            color: #222;
+            margin-bottom: 7px;
+            line-height: 1.5;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .categories-list li:hover {
+            color: #0070f3;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header__row">
+            <button class="burger" id="burger"><i class="fa-solid fa-bars"></i></button>
+
+            <nav class="nav-top" id="navTop"></nav>
+
+            <a href="#" class="brand"><img width="180px"
+                    src="https://tranquil-boba-b4a56b.netlify.app/logo%20birruti.png" alt=""></a>
+
+            <div class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" placeholder="Search">
+            </div>
+        </div>
+
+        <nav class="subnav">
+            <ul class="subnav__list" id="subnavList"></ul>
+        </nav>
+
+        <div class="mega" id="mega">
+            <div class="mega__wrap" id="megaWrap"></div>
+        </div>
+    </header>
+
+    <!-- mobile -->
+    <div class="m-overlay" id="mOverlay"></div>
+    <nav class="m-menu" id="mMenu">
+        <div class="m-menu__head">
+            <h3>Menu</h3>
+            <button class="m-close" id="mClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="mContent"></div>
+    </nav>
+    <main>
+        <section class="kids-full-image">
+            <img src="https://www.falke.com/media/i/FALKE_FALKE-Legwear_FS25_Kids_2900x900_Kids_Full-Body_1_Socken_Non_Intern_All_Cool-Greens_10423_6116___-13897-0.JPG"
+                alt="New Arrivals for Kids" class="kids-full-image__img" />
+        </section>
+
+        <h1 style="font-weight: 400; text-align:center; margin: 40px 0 24px;">Men's Collection</h1>
+        <div class="scroll-buttons-wrapper">
+            <button class="scroll-btn left" onclick="scrollSubButtons(-200)"><svg width="8px" viewBox="0 0 17 32"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15.2909 0.000167847L16.7109 1.42017L2.41088 15.7102L16.7109 30.0002L15.2909 31.4202L0.290878 16.4202C0.104627 16.2328 8.39233e-05 15.9794 8.39233e-05 15.7152C8.39233e-05 15.451 0.104627 15.1975 0.290878 15.0102L15.2909 0.000167847Z"
+                        fill="black" />
+                </svg>
+            </button>
+            <div class="subsubsub-scroll-wrapper">
+                <div id="subsubsub-buttons" class="subsubsub-scroll"></div>
+            </div>
+            <button class="scroll-btn right" onclick="scrollSubButtons(200)"><svg style="width: 16px;"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" x="0px" y="0px">
+                    <g data-name="443-Arrow Right">
+                        <path d="M9.71,31.71,8.29,30.29,22.59,16,8.29,1.71,9.71.29l15,15a1,1,0,0,1,0,1.41Z" />
+                    </g><text x="0" y="47" fill="#000000" font-size="5px" font-weight="bold"
+                        font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by NoNsEnSe
+                        ThInGs</text><text x="0" y="52" fill="#000000" font-size="5px" font-weight="bold"
+                        font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun
+                        Project</text>
+                </svg></button>
+        </div>
+
+
+
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto 24px auto; padding: 0 16px;">
+            <div id="items-count" style="font-size: 18px; color: #222; font-weight: 500;">0 Items</div>
+            <button id="openFilter"
+                style="display: flex; align-items: center; gap: 8px; background: none; border: 1px solid #ddd; border-radius: 6px; padding: 8px 18px; font-size: 16px; cursor: pointer;">
+                <i class="fa-solid fa-sliders"></i> Filter and sort
+            </button>
+        </div>
+        <div id="filterPanel"
+            style="position: fixed; top: 0; right: -400px; width: 340px; height: 100vh; background: #fff; box-shadow: -2px 0 16px #0002; z-index: 2000; transition: right 0.3s; padding: 32px 24px 24px 24px; overflow-y: auto;">
+            <button id="closeFilter"
+                style="position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 22px; cursor: pointer; color: #222;"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <h2 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 24px;">Filter & Sort</h2>
+            <div style="margin-bottom: 24px;">
+                <label style="font-weight: 500;">Sort by:</label><br>
+                <select id="sortSelect" style="margin-top: 8px; width: 100%; padding: 8px; font-size: 15px;">
+                    <option value="default">Default</option>
+                    <option value="price_asc">Price: Low to High</option>
+                    <option value="price_desc">Price: High to Low</option>
+                    <option value="newest">Newest</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 24px;">
+                <label style="font-weight: 500;">Price range:</label><br>
+                <input type="number" id="minPrice" placeholder="Min"
+                    style="width: 45%; padding: 6px; margin-right: 8px;"> -
+                <input type="number" id="maxPrice" placeholder="Max" style="width: 45%; padding: 6px;">
+            </div>
+            <button id="applyFilter"
+                style="width: 100%; background: #000000; color: #fff; border: none; border-radius: 6px; padding: 12px 0; font-size: 16px; font-weight: 600; cursor: pointer;">Apply</button>
+        </div>
+        <div id="filterOverlay"
+            style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.25); z-index:1999;"></div>
+        <div style="display: flex; max-width: 1200px; margin: 0 auto; align-items: flex-start; gap: 40px;">
+
+            <div id="products-grid" class="products-grid"></div>
+
+        </div>
+    </main>
+    <script>
+        /* ---------- DATA ---------- */
+        let menuData = {};
+
+        /* ---------- DOM ---------- */
+        const subnav = document.getElementById('subnavList');
+        const navTopBtns = document.querySelectorAll('.nav-top__btn');
+        const mega = document.getElementById('mega');
+        const megaWrap = document.getElementById('megaWrap');
+
+        /* ---------- helpers ---------- */
+        async function loadMenuData() {
+            try {
+                const response = await fetch('http://127.0.0.1:8001/api/shop-menu/');
+                menuData = await response.json();
+                console.log('Loaded menu data:', menuData);
+                renderNavTop();
+                const activeCat = getCategoryFromUrl() || Object.keys(menuData)[0];
+                renderSub(activeCat);
+                const activeSubcat = menuData[activeCat].subcategories[0]?.name;
+                if (activeSubcat) {
+                    renderSubSubSubCategories(activeCat, activeSubcat);
+                }
+
+                // ✅ Вставь сюда:
+                buildMobile();
+
+            } catch (error) {
+                console.error('Ошибка загрузки меню:', error);
+            }
+        }
+
+
+
+        // Загружаем данные при загрузке страницы
+        loadMenuData();
+
+        function renderSub(cat) {
+            if (!menuData[cat]) return;
+
+            subnav.innerHTML = menuData[cat].list.map(txt => {
+                const subcategory = menuData[cat].subcategories.find(sub => sub.name === txt);
+                if (subcategory) {
+                    const linkAttr = subcategory.link ? `href="${subcategory.link}"` : 'href="#"';
+                    const dataAttr = (subcategory.subsubcategories && subcategory.subsubcategories.length > 0) ? `data-sub="${txt}"` : '';
+                    return `<li><a ${linkAttr} ${dataAttr} class="subnav__link">${txt}</a></li>`;
+
+                }
+                return `<li>${txt}</li>`;
+            }).join('');
+        }
+
+
+
+        function buildLvl2(label, children) {
+            console.log('buildLvl2 children:', children);
+            let lvl2 = document.getElementById('megaLvl2');
+            if (!lvl2) {
+                lvl2 = document.createElement('div');
+                lvl2.id = 'megaLvl2';
+                lvl2.className = 'mega-lvl2';
+                megaWrap.appendChild(lvl2);
+            }
+
+            // Универсально: разбиваем элементы массива, если внутри есть запятые
+            let items = [];
+            if (Array.isArray(children)) {
+                items = children.flatMap(item =>
+                    typeof item === 'string' && item.includes(',')
+                        ? item.split(',').map(s => s.trim()).filter(Boolean)
+                        : [item && typeof item === 'string' ? item.trim() : item]
+                );
+            } else if (typeof children === 'string') {
+                items = children.split(',').map(s => s.trim()).filter(Boolean);
+            } else if (children) {
+                items = [String(children)];
+            }
+
+            lvl2.innerHTML = `
+                <div style="font-size:20px;font-weight:700;margin-bottom:10px;">${label}</div>
+                <ul class="categories-list" style="margin:0;padding:0;list-style:none;">
+                    ${items.map(c => `<li style='margin:0 0 2px 0;padding:0;font-size:17px;color:#222;'>${c}</li>`).join('')}
+                </ul>
+            `;
+            lvl2.style.display = 'flex';
+        }
+
+        function hideLvl2() {
+            const lvl2 = document.getElementById('megaLvl2');
+            if (lvl2) lvl2.style.display = 'none';
+        }
+
+        function renderMega(cat, key) {
+            const subcategory = menuData[cat].subcategories.find(sub => sub.name === key);
+            if (!subcategory) {
+                mega.classList.remove('show');
+                return;
+            }
+
+            let subsub = subcategory.subsubcategories || [];
+
+            megaWrap.innerHTML = subsub.map(ss => {
+                const subsubs = (ss.subsubsubcategories && ss.subsubsubcategories.length > 0)
+                    ? `<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 6px;">
+        ${ss.subsubsubcategories.map(sss => `
+            <a href='/category-products/?subsubcat_id=${ss.id}&subsubcat_name=${encodeURIComponent(ss.name)}&subsubsubcat_id=${sss.id}&subsubsubcat_name=${encodeURIComponent(sss.name)}'
+               class='mega__sublink'>
+                ${sss.name}
+            </a>`).join('')}
+    </div>`
+                    : '';
+
+                return `
+    <div class="mega__col">
+        <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">${ss.name}</div>
+        ${subsubs}
+    </div>
+    `;
+            }).join('');
+
+
+            // Добавим картинку справа, если есть
+            if (subcategory.image) {
+                megaWrap.insertAdjacentHTML('beforeend', `
+			<div class="mega__img">
+				<img src="${subcategory.image}" alt="${subcategory.name}">
+				<div class="mega__caption">
+					<span class="mega__caption-arrow">&#8594;</span>
+					${subcategory.caption || 'Shop now'}
+				</div>
+			</div>
+		`);
+            }
+
+            mega.classList.add('show');
+        }
+
+        /*
+        /* ---------- level‑1 events ---------- */
+        navTopBtns.forEach(btn => {
+            btn.onclick = () => {
+                document.querySelector('.nav-top__btn.is-active').classList.remove('is-active');
+                btn.classList.add('is-active');
+                renderSub(btn.dataset.cat);
+                mega.classList.remove('show');
+            };
+        });
+
+        /* ---------- level‑2 events ---------- */
+        subnav.addEventListener('mouseover', e => {
+            const l = e.target.closest('.subnav__link');
+            if (l && l.dataset.sub) {
+                const activeCat = document.querySelector('.nav-top__btn.is-active').dataset.cat;
+                renderMega(activeCat, l.dataset.sub);
+            }
+        });
+
+
+        /* ---------- level‑3 → level‑4 events ---------- */
+        megaWrap.addEventListener('mouseover', e => {
+            const link = e.target.closest('.has-child');
+            if (link) buildLvl2(link.textContent.trim(), JSON.parse(link.dataset.deep));
+        });
+
+        /* hide lvl‑4 when pointer leaves both mega and lvl‑4 */
+        mega.addEventListener('mouseleave', () => {
+            mega.classList.remove('show');
+            hideLvl2();
+        });
+
+        /* ---------- MOBILE ---------- */
+        const burger = document.getElementById('burger');
+        const mMenu = document.getElementById('mMenu');
+        const mOverlay = document.getElementById('mOverlay');
+        const mClose = document.getElementById('mClose');
+        const mContent = document.getElementById('mContent');
+        let startX = null;
+
+        function buildMobile() {
+            if (!menuData || Object.keys(menuData).length === 0) {
+                mContent.innerHTML = "<div style='padding:32px;'>Loading...</div>";
+                return;
+            }
+            mContent.innerHTML = Object.entries(menuData).map(([cat, val]) => {
+                const subcategories = val.subcategories || [];
+                const subItems = subcategories.map(subcat => {
+                    const subsub = subcat.subsubcategories || [];
+                    if (subsub.length > 0) {
+                        const subsubItems = subsub.map(ss => {
+                            const subsubs = (ss.subsubsubcategories && ss.subsubsubcategories.length > 0)
+                                ? `<ul style='margin:6px 0 0 18px;'>${ss.subsubsubcategories.map(sss => `<li><a href='/category-products/?subsubcat_id=${sss.id}&subsubcat_name=${encodeURIComponent(sss.name)}'>${sss.name}</a></li>`).join('')}</ul>`
+                                : '';
+                            return `<li><strong>${ss.name}</strong>${subsubs}</li>`;
+                        }).join('');
+                        let imgBlock = '';
+                        if (subcat.image) {
+                            imgBlock = `<div class='mega__img' style='margin:18px 0 0 0;text-align:center;'>
+                                <img src='${subcat.image}' alt='${subcat.name}' style='width:180px;max-width:90vw;border-radius:8px;margin-bottom:10px;'>
+                                <div class='mega__caption' style='font-size:16px;'><span class='mega__caption-arrow' style='font-size:20px;'>&#8594;</span>${subcat.caption || 'Shop now'}</div>
+                            </div>`;
+                        }
+                        return `<details class='m-acc'><summary>${subcat.name}</summary><ul>${subsubItems}</ul>${imgBlock}</details>`;
+                    } else {
+                        return `<li><a href='/category-products/?subcat_id=${subcat.id}&subcat_name=${encodeURIComponent(subcat.name)}'>${subcat.name}</a></li>`;
+                    }
+                }).join('');
+                // Категория всегда выводится, даже если subItems пустой
+                return `<details class='m-acc'><summary>${val.name ? val.name.toUpperCase() : cat.toUpperCase()}</summary><ul>${subItems}</ul></details>`;
+            }).join('');
+        }
+
+        const openBurger = () => {
+            mMenu.classList.add('is-open');
+            mOverlay.classList.add('is-open');
+            document.body.classList.add('noscroll');
+        };
+        const closeBurger = () => {
+            mMenu.classList.remove('is-open');
+            mOverlay.classList.remove('is-open');
+            document.body.classList.remove('noscroll');
+        };
+
+        burger.onclick = openBurger;
+        mClose.onclick = closeBurger;
+        mOverlay.onclick = closeBurger;
+
+        mMenu.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+        mMenu.addEventListener('touchmove', e => {
+            if (startX !== null) {
+                const diff = e.touches[0].clientX - startX;
+                if (diff > 60) { closeBurger(); startX = null; }
+            }
+        });
+        mMenu.addEventListener('touchend', () => startX = null);
+
+        function getCategoryFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('category');
+        }
+
+        function renderNavTop() {
+            const navTop = document.getElementById('navTop');
+            navTop.innerHTML = '';
+            const cats = Object.keys(menuData);
+            cats.forEach((cat) => {
+                if (cat.toLowerCase() === 'kids') return; // Пропускаем kids
+                const a = document.createElement('a');
+                a.className = 'nav-top__btn' + (cat.toLowerCase() === 'men' ? ' is-active' : '');
+                a.dataset.cat = cat;
+                a.textContent = menuData[cat].name ? menuData[cat].name.toUpperCase() : cat.toUpperCase();
+                if (menuData[cat].link) {
+                    a.href = menuData[cat].link;
+                    a.onclick = null; // обычный переход
+                } else {
+                    a.href = `?category=${cat}`;
+                    a.onclick = function (e) {
+                        e.preventDefault();
+                        renderSub(cat);
+                        renderSubSubSubCategories(cat, menuData[cat].subcategories[0].name);
+
+                        mega.classList.remove('show');
+                        window.history.replaceState({}, '', `?category=${cat}`);
+                    };
+                }
+                navTop.appendChild(a);
+            });
+        }
+    </script>
+    <script>
+        function updateScrollButtonsVisibility() {
+            const container = document.querySelector('.subsubsub-scroll-wrapper');
+            const scrollLeftBtn = document.querySelector('.scroll-btn.left');
+            const scrollRightBtn = document.querySelector('.scroll-btn.right');
+
+            if (!container || !scrollLeftBtn || !scrollRightBtn) return;
+
+            const hasOverflow = container.scrollWidth > container.clientWidth;
+
+            // Только показываем стрелки, если есть переполнение И это не мобильный
+            if (window.innerWidth > 768 && !hasOverflow) {
+                scrollLeftBtn.style.display = 'none';
+                scrollRightBtn.style.display = 'none';
+            } else {
+                scrollLeftBtn.style.display = 'flex';
+                scrollRightBtn.style.display = 'flex';
+            }
+        }
+
+        // Проверка при загрузке и ресайзе
+        window.addEventListener('DOMContentLoaded', updateScrollButtonsVisibility);
+        window.addEventListener('resize', updateScrollButtonsVisibility);
+    </script>
+
+    <script>
+
+        function renderSubSubSubCategories(cat, subcatName) {
+            const menu = menuData[cat];
+            if (!menu) return;
+
+            const subcat = menu.subcategories.find(s => s.name === subcatName);
+            if (!subcat || !subcat.subsubcategories || subcat.subsubcategories.length === 0) return;
+
+            const subsub = subcat.subsubcategories[0];
+            if (!subsub || !subsub.subsubsubcategories) return;
+
+            const container = document.getElementById('subsubsub-buttons');
+            if (!container) return;
+
+            container.innerHTML = subsub.subsubsubcategories.map((item, idx) => `
+        <button class="subsubsub-btn" data-id="${item.id}" onclick="handleSubSubSubClick(${item.id}, '${item.name}', this)">${item.name}</button>
+    `).join('');
+        }
+
+        function handleSubSubSubClick(id, name, btnEl) {
+            console.log("Clicked category:", name, "with ID:", id);
+
+            // Убираем активный класс у всех
+            document.querySelectorAll('.subsubsub-btn').forEach(b => b.classList.remove('active'));
+
+            // Добавляем активный класс на выбранную
+            if (btnEl) btnEl.classList.add('active');
+
+            document.getElementById('items-count').textContent = 'Loading...';
+
+            fetch(`http://127.0.0.1:8001/api/products/?subsubsubcategory_id=${id}`)
+                .then(res => res.json())
+                .then(async products => {
+                    const detailedProducts = await Promise.all(products.map(async (p) => {
+                        const detailRes = await fetch(`http://127.0.0.1:8001/api/product/${p.id}/`);
+                        const detail = await detailRes.json();
+                        return { ...p, colors: detail.colors || [] };
+                    }));
+
+                    allProducts = detailedProducts;
+                    renderProducts(detailedProducts);
+                })
+                .catch(error => {
+                    console.error("Error loading subsubsubcategory products:", error);
+                    document.getElementById('products-grid').innerHTML = '<p>Failed to load products</p>';
+                });
+        }
+
+
+
+        let allProducts = [];
+        async function loadAllMenProducts() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const subsubcatId = urlParams.get('subsubcat_id');
+            let url = 'http://127.0.0.1:8001/api/products/?gender=men';
+            if (subsubcatId && subsubcatId !== 'undefined') {
+                url += `&subsubcat_id=${subsubcatId}`;
+            }
+
+            try {
+                const res = await fetch(url);
+                const products = await res.json();
+
+                const detailedProducts = await Promise.all(products.map(async (p) => {
+                    const detailRes = await fetch(`http://127.0.0.1:8001/api/product/${p.id}/`);
+                    const detail = await detailRes.json();
+                    return { ...p, colors: detail.colors || [] };
+                }));
+
+                allProducts = detailedProducts;
+                renderProducts(detailedProducts);
+            } catch (error) {
+                console.error('Ошибка загрузки:', error);
+                document.getElementById('products-grid').innerHTML = '<p>Ошибка загрузки товаров</p>';
+            }
+        }
+        function renderProducts(products) {
+            const grid = document.getElementById('products-grid');
+            document.getElementById('items-count').textContent = products.length + ' Items';
+
+            grid.innerHTML = products.map(p => {
+                const productId = p.id;
+                const image = p.main_image;
+
+                // Рендерим до 5 цветов
+                const swatches = (p.colors || []).slice(0, 5).map(c => `
+                    <span class="swatch"
+                          style="background-image: url('${c.color_image}')"
+                          onclick="event.stopPropagation(); changeProductImage(${productId}, '${c.color_image}')">
+                    </span>`).join('');
+
+                return `
+                    <div class="product-card" onclick="window.location.href='product.html?id=${productId}'">
+                        <img id="product-image-${productId}" src="${image}" alt="${p.title}">
+                        <div class="product-title">${p.title}</div>
+                        <div class="product-price">$${p.price}</div>
+                        <div class="color-swatches">${swatches}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function changeProductImage(productId, imageUrl) {
+            const img = document.getElementById(`product-image-${productId}`);
+            if (img) img.src = imageUrl;
+        }
+
+        // Запуск
+        loadAllMenProducts();
+    </script>
+    <script>
+        function scrollSubButtons(amount) {
+            const container = document.querySelector('.subsubsub-scroll-wrapper');
+            container.scrollBy({ left: amount, behavior: 'smooth' });
+        }
+
+    </script>
+    <script>
+
+        // Фильтрация и сортировка
+        function applyFilters() {
+            let filtered = [...allProducts];
+            const minPrice = parseFloat(document.getElementById('minPrice').value);
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value);
+            if (!isNaN(minPrice)) filtered = filtered.filter(p => parseFloat(p.price) >= minPrice);
+            if (!isNaN(maxPrice)) filtered = filtered.filter(p => parseFloat(p.price) <= maxPrice);
+            const sort = document.getElementById('sortSelect').value;
+            if (sort === 'price_asc') filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+            if (sort === 'price_desc') filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            if (sort === 'newest') filtered = filtered.slice().reverse(); // Просто реверс, если нет даты
+            renderProducts(filtered);
+        }
+        // Открытие/закрытие фильтра
+        document.getElementById('openFilter').onclick = function () {
+            document.getElementById('filterPanel').style.right = '0';
+            document.getElementById('filterOverlay').style.display = 'block';
+        };
+        document.getElementById('closeFilter').onclick = function () {
+            document.getElementById('filterPanel').style.right = '-400px';
+            document.getElementById('filterOverlay').style.display = 'none';
+        };
+        document.getElementById('filterOverlay').onclick = function () {
+            document.getElementById('filterPanel').style.right = '-400px';
+            document.getElementById('filterOverlay').style.display = 'none';
+        };
+        document.getElementById('applyFilter').onclick = function () {
+            applyFilters();
+            document.getElementById('filterPanel').style.right = '-400px';
+            document.getElementById('filterOverlay').style.display = 'none';
+        };
+        // Загрузи товары при старте
+        loadAllMenProducts();
+
+    </script>
+    <script>
+        // --- Sidebar logic ---
+        function renderSidebar(cat, subcat) {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar) return;
+            const titleDiv = document.getElementById('sidebar-title');
+            const listDiv = document.getElementById('sidebar-list');
+            // Найти нужную подкатегорию
+            const category = menuData[cat];
+            if (!category) { sidebar.style.display = 'none'; return; }
+            const subcategory = category.subcategories.find(s => s.name === subcat);
+            if (!subcategory) { sidebar.style.display = 'none'; return; }
+            // 1. Вверху — название подкатегории обычным текстом
+            titleDiv.innerHTML = `<span style="font-size:1.3rem;font-weight:500;color:#222;">${subcategory.name}</span>`;
+            // 2. Список под-подкатегорий жирным и крупнее, под каждым — список под-под-подкатегорий
+            if (subcategory.subsubcategories && subcategory.subsubcategories.length > 0) {
+                // есть под-подкатегории — открываем mega-меню по наведению
+                return `<li><a href="#" class="subnav__link" data-sub="${txt}">${txt}</a></li>`;
+            } else if (subcategory.link) {
+                // нет под-подкатегорий — просто ссылка
+                return `<li><a href="${subcategory.link}" class="subnav__link">${txt}</a></li>`;
+            }
+
+            sidebar.style.display = 'block';
+        }
+        // --- Пример вызова (замени на свой обработчик выбора под-подкатегории) ---
+        // renderSidebar('men', 'Подкатегория', 'под под категория');
+    </script>
+    <script>
+        document.getElementById('subnavList').addEventListener('click', function (e) {
+            const link = e.target.closest('.subnav__link');
+            if (!link) return;
+
+            const href = link.getAttribute('href');
+            const hasSub = link.dataset.sub;
+
+            // Если есть вложенные категории и НЕТ ссылки → предотвращаем переход и рендерим подменю
+            if (!href || href === '#' || !href.startsWith('http')) {
+                e.preventDefault();
+                const cat = document.querySelector('.nav-top__btn.is-active').dataset.cat;
+                const subcat = link.dataset.sub;
+                renderSidebar(cat, subcat);
+                renderSubSubSubCategories(cat, subcat);
+            }
+            // иначе — пусть работает переход по ссылке
+        });
+    </script>
+</body>
+
+</html>
